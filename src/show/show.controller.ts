@@ -33,7 +33,6 @@ export class ShowController {
     }
 
     // ### Episode ###
-
     @Get(':id/episode')
     async episodeIndex(@Param('id') id : number) {
         return this.showService.episodeIndex(id);

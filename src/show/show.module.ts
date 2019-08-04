@@ -10,4 +10,4 @@ import { Episode } from './episode.entity';
     providers: [ShowService],
     controllers: [ShowController],
 })
-export class ShowsModule {}
+export class ShowModule {}
