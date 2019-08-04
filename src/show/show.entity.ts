@@ -1,9 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany, JoinTable}  from 'typeorm';
-
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany}  from 'typeorm';
 import { Episode } from './episode.entity';
 import { IsNotEmpty } from "class-validator";
 @Entity()
-export class Shows {
+export class Show {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -11,7 +10,7 @@ export class Shows {
   @IsNotEmpty()
   name: string;
 
-  @OneToMany(type => Episode, episode => episode.shows)
+  @OneToMany(type => Episode, episode => episode.show)
   episode: Episode[];
 }
 

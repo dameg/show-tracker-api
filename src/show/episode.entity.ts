@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Shows } from './shows.entity'
+import { Show } from './show.entity'
 import { IsNotEmpty } from 'class-validator';
 
 @Entity('episode')
@@ -11,8 +11,8 @@ export class Episode {
   @IsNotEmpty()
   name : string
 
-  @ManyToOne(type => Shows, shows => shows.episode)
-  shows: Shows;
+  @ManyToOne(type => Show, show => show.episode)
+  show: Show;
 
 }
 

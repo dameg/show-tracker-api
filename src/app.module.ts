@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
-import { ShowsModule } from './shows/shows.module';
-import { ShowsController } from './shows/shows.controller';
-import { ShowsService } from './shows/shows.service';
+import { ShowsModule } from './show/show.module';
+import { ShowController } from './show/show.controller';
+import { ShowService } from './show/show.service';
 
 @Module({
   imports: [
