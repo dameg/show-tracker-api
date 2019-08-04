@@ -12,7 +12,6 @@ export class Shows {
   name: string;
 
   @OneToMany(type => Episode, episode => episode.shows)
-  @JoinTable()
   episode: Episode[];
 }
 

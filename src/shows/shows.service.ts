@@ -34,7 +34,7 @@ export class ShowsService {
       }
 
       async episodeIndex(id : number) {
-          return await this.showsRepository.findOne(id, { relations : ['episode']});
+          return await this.episodeRepository.find({where: {showsId : id}});
       }
 
       async createEpisode(id : number, episode : Episode ) {

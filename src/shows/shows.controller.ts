@@ -32,7 +32,6 @@ export class ShowsController {
         return this.showsService.deleteShow(id);
     }
 
-    // Episodes CRUD
     @Get(':id/episode')
     async episodeIndex(@Param('id') id : number) {
         return this.showsService.episodeIndex(id);
