@@ -40,7 +40,7 @@ export class ShowService {
       async createEpisode(id : number, episode : Episode ) : Promise<Episode> {
        const show = await this.showRepository.findOne({ where: {id : id} });
        const newEpisode = await this.episodeRepository.create({...episode, show : show});
-       await this.episodeRepository.save(newEpisode);
-       return newEpisode;
+             await this.episodeRepository.save(newEpisode);
+            return newEpisode;
       }
 }

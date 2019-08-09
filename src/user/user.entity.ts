@@ -1,7 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, CreateDateColumn, Column, BeforeInsert } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
-import { response } from 'express';
 
 @Entity()
 export class User {
@@ -41,7 +40,6 @@ export class User {
 
     private get token() {
         const { id, username } = this;
-        console.log(process.env.SECRET);
         return jwt.sign({
             id, username
         }, 'test', {expiresIn: '7d'}

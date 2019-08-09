@@ -1,14 +1,17 @@
-import { Controller, Get, Param, Post, Body, Patch, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Patch, Delete, UseGuards } from '@nestjs/common';
 import { ShowService } from './show.service';
 import { Show } from './show.entity';
 import { Episode } from './episode.entity';
+import { AuthGuard } from '../shared/auth.guard';
+import { User } from '../user/user.decorator';
 
 @Controller('show')
 export class ShowController {
     constructor(private readonly showService: ShowService) {}
 
+    @UseGuards(new AuthGuard())
     @Get()
-    async showIndex() : Promise<Show[]> {
+    async showIndex(@User() user) : Promise<Show[]> {
         return this.showService.showIndex();
     }
 
@@ -32,7 +35,6 @@ export class ShowController {
         return this.showService.deleteShow(id);
     }
 
-    // ### Episode ###
     @Get(':id/episode')
     async episodeIndex(@Param('id') id : number) {
         return this.showService.episodeIndex(id);
@@ -42,6 +44,4 @@ export class ShowController {
     async createEpisode(@Param('id') id : number, @Body() episode : Episode) {
         return this.showService.createEpisode(id, episode);
     }
-
-
 }
