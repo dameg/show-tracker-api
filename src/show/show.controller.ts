@@ -2,16 +2,14 @@ import { Controller, Get, Param, Post, Body, Patch, Delete, UseGuards } from '@n
 import { ShowService } from './show.service';
 import { Show } from './show.entity';
 import { Episode } from './episode.entity';
-import { AuthGuard } from '../shared/auth.guard';
-import { User } from '../user/user.decorator';
 
 @Controller('show')
 export class ShowController {
     constructor(private readonly showService: ShowService) {}
 
-    @UseGuards(new AuthGuard())
+
     @Get()
-    async showIndex(@User() user) : Promise<Show[]> {
+    async showIndex() : Promise<Show[]> {
         return this.showService.showIndex();
     }
 
@@ -45,8 +43,8 @@ export class ShowController {
         return this.showService.createEpisode(id, episode);
     }
 
-    @Patch(':id/episode/:subId')
-    async updateEpisdoe(@Param('id') id : number , @Param('subId') subId : number, @Body() episode: Episode) {
-        return this.showService.updateEpisode(id, subId, episode);
-    }
+    // @Patch(':id/episode/:subId')
+    // async updateEpisdoe(@Param('id') id : number , @Param('subId') subId : number, @Body() episode: Episode) {
+        // return this.showService.updateEpisode(id, subId, episode);
+    // }
 }

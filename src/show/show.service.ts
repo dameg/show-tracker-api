@@ -44,7 +44,7 @@ export class ShowService {
             return newEpisode;
       }
 
-      async updateEpisode(id : number, subId : number, episode : Episode) : Promise<UpdateResult> {
-        const updatedEpisode = await
-      }
+    //   async updateEpisode(id : number, subId : number, episode : Episode) : Promise<UpdateResult> {
+    //     const updatedEpisode = await
+    //   }
 }
