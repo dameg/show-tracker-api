@@ -44,4 +44,9 @@ export class ShowController {
     async createEpisode(@Param('id') id : number, @Body() episode : Episode) {
         return this.showService.createEpisode(id, episode);
     }
+
+    @Patch(':id/episode/:subId')
+    async updateEpisdoe(@Param('id') id : number , @Param('subId') subId : number, @Body() episode: Episode) {
+        return this.showService.updateEpisode(id, subId, episode);
+    }
 }

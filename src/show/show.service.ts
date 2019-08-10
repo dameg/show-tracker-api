@@ -43,4 +43,8 @@ export class ShowService {
              await this.episodeRepository.save(newEpisode);
             return newEpisode;
       }
+
+      async updateEpisode(id : number, subId : number, episode : Episode) : Promise<UpdateResult> {
+        const updatedEpisode = await
+      }
 }
