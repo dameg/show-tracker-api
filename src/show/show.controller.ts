@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Patch, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Patch, Delete } from '@nestjs/common';
 import { ShowService } from './show.service';
 import { Show } from './show.entity';
 import { Episode } from './episode.entity';
@@ -6,7 +6,6 @@ import { Episode } from './episode.entity';
 @Controller('show')
 export class ShowController {
     constructor(private readonly showService: ShowService) {}
-
 
     @Get()
     async showIndex() : Promise<Show[]> {
