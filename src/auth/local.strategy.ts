@@ -2,6 +2,7 @@ import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { UserDTO } from '../user/user.dto';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -9,9 +10,12 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     super();
   }
 
-  async validate (name: string, password: string) : Promise<any> {
-    console.log('Validate...');
-    const user = await this.authService.validateUser(name, password);
+  async validate (username : string, password: string) : Promise<any> {
+      const payload = {
+        username,
+        password
+      };
+    const user = await this.authService.validateUser(payload);
     if (!user) {
         throw new HttpException(
             'Error: Invalid name or password!',

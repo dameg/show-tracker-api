@@ -8,12 +8,13 @@ import { UserDTO } from './user.dto';
 export class UserService {
     constructor(
         @InjectRepository(UserEntity)
-        private readonly userRepository: Repository<UserEntity>
+        private readonly userRepository: Repository<UserEntity>,
+
     ) {}
 
     async createUser(payload : UserDTO) : Promise<UserEntity>  {
-        const { name } = payload;
-        let user = await this.userRepository.findOne({where : {name}});
+        const { username } = payload;
+        let user = await this.userRepository.findOne({where : {username}});
         if (user) {
             throw new HttpException(
                 'Error: User already exist!',
@@ -23,6 +24,10 @@ export class UserService {
         user = await this.userRepository.create(payload);
         await this.userRepository.save(user);
             return user;
+    }
+
+    async getUserByUsername (payload : string) {
+        return this.userRepository.findOne({where : {username : payload}});
     }
 
 }

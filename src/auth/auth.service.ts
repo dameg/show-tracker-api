@@ -1,22 +1,28 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Injectable, Inject, forwardRef } from '@nestjs/common';
 import { UserEntity } from '../user/user.entity';
 import { UserDTO } from '../user/user.dto';
 import * as bcrypt from 'bcryptjs';
+import { JwtService } from '@nestjs/jwt';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
     constructor(
-        @InjectRepository(UserEntity)
-        private readonly userRepository: Repository<UserEntity>
+        @Inject(forwardRef(() => UserService))
+        private readonly userService: UserService,
+        private readonly jwtService: JwtService
     ) {}
 
-    async validateUser (name : string, password : string) : Promise<UserEntity | null>  {
-        console.log('validate');
-        const user = await this.userRepository.findOne({where: {name}});
+    async validateUser (payload : UserDTO) : Promise<UserEntity | null>  {
+        const { username, password } = payload;
+        const user = await this.userService.getUserByUsername(username);
         if (!user || !this.comparePassword(password, user.password)) return null;
             return user;
+    }
+
+    async generateToken (payload : UserDTO) : Promise<string> {
+        const token = await this.jwtService.sign(payload);
+            return token;
     }
 
     async comparePassword (password : string, hashedPassword : string)  : Promise<boolean> {

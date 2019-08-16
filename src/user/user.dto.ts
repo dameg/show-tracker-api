@@ -1,4 +1,6 @@
 export class UserDTO {
-    name : string;
+    id?: string;
+    username : string;
     password: string;
+    token?: string;
 }
