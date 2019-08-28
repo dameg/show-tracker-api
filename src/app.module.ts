@@ -4,6 +4,8 @@ import { join } from 'path';
 import { ShowModule } from './show/show.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { SecurityController } from './security/security.controller';
+import { SecurityModule } from './security/security.module';
 
 @Module({
   imports: [
@@ -17,10 +19,10 @@ import { UserModule } from './user/user.module';
       entities: [join(__dirname, '**/**.entity{.ts,.js}')],
       synchronize: true,
     }),
-    AuthModule,
-    UserModule,
     ShowModule,
+    SecurityModule,
   ],
+  controllers: [SecurityController],
 })
 
 export class AppModule {}

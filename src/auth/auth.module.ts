@@ -9,7 +9,7 @@ import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
-    forwardRef(() => UserModule),
+    UserModule,
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,
