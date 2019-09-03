@@ -1,24 +1,23 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import { SecurityService } from './security.service';
+import { UserDTO } from '../user/user.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('')
 export class SecurityController {
-
-  constructor() {}
+  constructor(
+    private readonly securityService: SecurityService
+    ) {}
 
   @Post('register')
-  async registerUser () {
-    return await '0';
+  async registerUser (@Body() payload : UserDTO​​) {
+    return await this.securityService.register(payload);
   }
 
-
+  @UseGuards(AuthGuard('local'))
   @Post('login')
-  async loginUser () {
-    return await '0';
-  }
-
-  @Post('logout')
-  async logoutUser () {
-    return await '0';
+  async login (@Body() payload : UserDTO) {
+    return await this.securityService.login(payload);
   }
 
 }

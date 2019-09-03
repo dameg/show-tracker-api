@@ -2,10 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { ShowModule } from './show/show.module';
-import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
-import { SecurityController } from './security/security.controller';
 import { SecurityModule } from './security/security.module';
+import { EpisodeService } from './episode/episode.service';
+import { EpisodeModule } from './episode/episode.module';
 
 @Module({
   imports: [
@@ -19,10 +18,9 @@ import { SecurityModule } from './security/security.module';
       entities: [join(__dirname, '**/**.entity{.ts,.js}')],
       synchronize: true,
     }),
-    ShowModule,
     SecurityModule,
+    ShowModule
   ],
-  controllers: [SecurityController],
 })
 
 export class AppModule {}

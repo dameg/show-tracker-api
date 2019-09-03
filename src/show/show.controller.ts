@@ -1,12 +1,15 @@
 import { Controller, Get, Param, Post, Body, Patch, Delete, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ShowService } from './show.service';
+import { EpisodeService } from '../episode/episode.service';
 import { Show } from './show.entity';
-import { Episode } from './episode.entity';
 
 @Controller('show')
 export class ShowController {
-    constructor(private readonly showService: ShowService) {}
+    constructor(
+        private readonly showService: ShowService,
+        private readonly episodeService: EpisodeService
+        ) {}
 
     @UseGuards(AuthGuard('jwt'))
     @Get()
@@ -36,16 +39,6 @@ export class ShowController {
 
     @Get(':id/episode')
     async episodeIndex(@Param('id') id : number) {
-        return this.showService.episodeIndex(id);
+        return this.episodeService.episodeIndex(id);
     }
-
-    @Post(':id/episode')
-    async createEpisode(@Param('id') id : number, @Body() episode : Episode) {
-        return this.showService.createEpisode(id, episode);
-    }
-
-    // @Patch(':id/episode/:subId')
-    // async updateEpisdoe(@Param('id') id : number , @Param('subId') subId : number, @Body() episode: Episode) {
-        // return this.showService.updateEpisode(id, subId, episode);
-    // }
 }

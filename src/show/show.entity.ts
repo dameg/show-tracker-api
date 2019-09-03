@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany}  from 'typeorm';
-import { Episode } from './episode.entity';
+import { Episode } from '../episode/episode.entity';
 import { IsNotEmpty } from "class-validator";
 
 @Entity()

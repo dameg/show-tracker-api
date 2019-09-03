@@ -8,8 +8,7 @@ import { UserDTO } from './user.dto';
 export class UserService {
     constructor(
         @InjectRepository(UserEntity)
-        private readonly userRepository: Repository<UserEntity>,
-
+        private readonly userRepository: Repository<UserEntity>
     ) {}
 
     async createUser(payload : UserDTO) : Promise<UserEntity>  {

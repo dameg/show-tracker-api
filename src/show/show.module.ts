@@ -3,11 +3,11 @@ import { ShowService } from './show.service';
 import { ShowController } from './show.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Show } from './show.entity';
-import { Episode } from './episode.entity';
+import { EpisodeModule } from '../episode/episode.module';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Show, Episode])],
+    imports: [TypeOrmModule.forFeature([Show]), EpisodeModule],
     providers: [ShowService],
-    controllers: [ShowController],
+    controllers: [ShowController]
 })
 export class ShowModule {}
