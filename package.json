@@ -10,7 +10,7 @@
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",
     "start:debug": "tsc-watch -p tsconfig.build.json --onSuccess \"node --inspect-brk dist/main.js\"",
-    "start:prod": "node dist/main.js",
+    "start:prod": "nonde dist/main.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -39,7 +39,7 @@
     "typeorm": "^0.2.18"
   },
   "devDependencies": {
-    "@nestjs/testing": "6.1.1",
+    "@nestjs/testing": "^6.1.1",
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "4.16.1",
     "@types/jest": "24.0.11",

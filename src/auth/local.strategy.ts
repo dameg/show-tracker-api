@@ -10,19 +10,18 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     super();
   }
 
-  async validate (username : string, password: string) : Promise<any> {
-      const payload = {
-        username,
-        password
-      };
+  async validate(username: string, password: string): Promise<any> {
+    const payload = {
+      username,
+      password,
+    };
     const user = await this.authService.validateUser(payload);
     if (!user) {
-        throw new HttpException(
-            'Error: Invalid name or password!',
-            HttpStatus.UNAUTHORIZED
-        );
+      throw new HttpException(
+        'Error: Invalid name or password!',
+        HttpStatus.UNAUTHORIZED,
+      );
     }
     return user;
   }
-
 }

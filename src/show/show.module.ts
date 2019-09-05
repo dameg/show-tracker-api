@@ -6,8 +6,8 @@ import { Show } from './show.entity';
 import { EpisodeModule } from '../episode/episode.module';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Show]), EpisodeModule],
-    providers: [ShowService],
-    controllers: [ShowController]
+  imports: [TypeOrmModule.forFeature([Show]), EpisodeModule],
+  providers: [ShowService],
+  controllers: [ShowController],
 })
 export class ShowModule {}

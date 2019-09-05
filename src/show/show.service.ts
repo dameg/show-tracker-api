@@ -5,29 +5,28 @@ import { Show } from './show.entity';
 
 @Injectable()
 export class ShowService {
-    constructor(
-        @InjectRepository(Show)
-        private readonly showRepository: Repository<Show>,
-      ) {}
+  constructor(
+    @InjectRepository(Show)
+    private readonly showRepository: Repository<Show>,
+  ) {}
 
-      async showIndex() : Promise <Show[]> {
-          return await this.showRepository.find();
-      }
+  async showIndex(): Promise<Show[]> {
+    return await this.showRepository.find();
+  }
 
-      async selectShow(id : number) : Promise<Show> {
-        return await this.showRepository.findOne(id);
-      }
+  async selectShow(id: number): Promise<Show> {
+    return await this.showRepository.findOne(id);
+  }
 
-      async createShow(show : Show) : Promise<Show> {
-          return await this.showRepository.save(show);
-      }
+  async createShow(show: Show): Promise<Show> {
+    return await this.showRepository.save(show);
+  }
 
-      async updateShow(id : number, show : Show) : Promise<UpdateResult> {
-          return await this.showRepository.update(id, show);
-      }
+  async updateShow(id: number, show: Show): Promise<UpdateResult> {
+    return await this.showRepository.update(id, show);
+  }
 
-      async deleteShow(id : number) : Promise<DeleteResult> {
-          return await this.showRepository.delete(id);
-      }
-
+  async deleteShow(id: number): Promise<DeleteResult> {
+    return await this.showRepository.delete(id);
+  }
 }

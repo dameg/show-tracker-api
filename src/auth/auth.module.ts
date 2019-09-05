@@ -9,7 +9,7 @@ import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
-    UserModule​​,
+    UserModule,
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,
@@ -19,5 +19,4 @@ import { UserModule } from '../user/user.module';
   providers: [AuthService, LocalStrategy, JwtStrategy],
   exports: [AuthService],
 })
-
 export class AuthModule {}

@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LoggerMiddleware } from './middleware/logger.middleware';
 import { join } from 'path';
 import { ShowModule } from './show/show.module';
 import { SecurityModule } from './security/security.module';
-import { EpisodeService } from './episode/episode.service';
-import { EpisodeModule } from './episode/episode.module';
+
 
 @Module({
   imports: [
@@ -19,8 +19,15 @@ import { EpisodeModule } from './episode/episode.module';
       synchronize: true,
     }),
     SecurityModule,
-    ShowModule
+    ShowModule,
   ],
 })
-
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes({
+        path: '*', method: RequestMethod.ALL
+      });
+  }
+}

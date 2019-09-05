@@ -10,5 +10,4 @@ import { AuthModule } from '../auth/auth.module';
   providers: [SecurityService],
   controllers: [SecurityController],
 })
-
 export class SecurityModule {}
