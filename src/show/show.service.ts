@@ -8,14 +8,14 @@ export class ShowService {
   constructor(
     @InjectRepository(Show)
     private readonly showRepository: Repository<Show>,
-  ) {}
+  ) { }
 
   async showIndex(): Promise<Show[]> {
-    return await this.showRepository.find();
+    return await this.showRepository.find({ relations: ['episode'] });
   }
 
   async selectShow(id: number): Promise<Show> {
-    return await this.showRepository.findOne(id);
+    return await this.showRepository.findOne(id, { relations: ['episode'] });
   }
 
   async createShow(show: Show): Promise<Show> {
@@ -26,7 +26,7 @@ export class ShowService {
     return await this.showRepository.update(id, show);
   }
 
-  async deleteShow(id: number): Promise<DeleteResult> {
+  public async deleteShow(id: number): Promise<DeleteResult> {
     return await this.showRepository.delete(id);
   }
 }

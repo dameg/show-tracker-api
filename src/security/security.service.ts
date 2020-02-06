@@ -24,11 +24,11 @@ export class SecurityService {
     }
     user = await this.userRepository.create(payload);
     await this.userRepository.save(user);
-    return user;
+      return user;
   }
 
   async login(payload: UserDTO): Promise<string> {
     const token = await this.authService.generateToken(payload);
-    return token;
+      return token;
   }
 }

@@ -17,7 +17,7 @@ export class ShowController {
   constructor(
     private readonly showService: ShowService,
     private readonly episodeService: EpisodeService,
-  ) {}
+  ) { }
 
   @Get()
   async showIndex(): Promise<Show[]> {
@@ -50,7 +50,7 @@ export class ShowController {
   }
 
   @Post(':id/episode')
-  async createEpisode(@Param('id') id: number, @Body() episode : Episode) {
+  async createEpisode(@Param('id') id: number, @Body() episode: Episode) {
     return await this.episodeService.createEpisode(id, episode);
   }
 }
