@@ -4,6 +4,7 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
 import { join } from 'path';
 import { ShowModule } from './show/show.module';
 import { SecurityModule } from './security/security.module';
+import { HttpService } from './http/http.service';
 
 
 @Module({
@@ -21,6 +22,7 @@ import { SecurityModule } from './security/security.module';
     SecurityModule,
     ShowModule,
   ],
+  providers: [HttpService],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

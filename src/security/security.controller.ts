@@ -1,11 +1,11 @@
 import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { SecurityService } from './security.service';
-import { UserDTO } from '../user/user.dto';
+import { UserDTO } from '../user/user.dto.ts';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('')
 export class SecurityController {
-  constructor(private readonly securityService: SecurityService) {}
+  constructor(private readonly securityService: SecurityService) { }
 
   @Post('register')
   async registerUser(@Body() payload: UserDTO) {

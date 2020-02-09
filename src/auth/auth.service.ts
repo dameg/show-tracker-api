@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserEntity } from '../user/user.entity';
-import { UserDTO } from '../user/user.dto';
+import { UserDTO } from '../user/user.dto.ts';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
@@ -10,7 +10,7 @@ export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async validateUser(payload: UserDTO): Promise<UserEntity | null> {
     const { username, password } = payload;
